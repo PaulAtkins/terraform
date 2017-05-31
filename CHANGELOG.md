@@ -4,6 +4,23 @@ FEATURES:
 
  * **New Resource:** `librato_metric` [GH-14562]
  * **New Resource:** `digitalocean_certificate` [GH-14578]
+ * **New Interpolation Function:** `bcrypt` [GH-14725]
+
+IMPROVEMENTS:
+
+* provider/aws: Expose RDS instance and cluster resource id [GH-14882]
+* provider/digitalocean: Add support for changing TTL on DigitalOcean domain records. [GH-14805]
+* provider/google: Add ability to import Google Compute persistent disks [GH-14573]
+* provider/openstack: Add support provider networks [GH-10265]
+* provider/openstack: Allow numerical protocols in security group rules [GH-14917]
+* provisioner/chef: Use `helpers.shema.Provisoner` in Chef provisioner V2 [GH-14681]
+
+BUG FIXES:
+
+* provider/aws: ForceNew aws_launch_config on ebs_block_device change [GH-14899]
+* provider/aws: Avoid crash when EgressOnly IGW disappears [GH-14929]
+* provider/digitalocean: Refresh DO loadbalancer from state if 404 [GH-14897]
+* provider/github: Do not set incorrect values in github_team data source [GH-14859]
 
 ## 0.9.6 (May 25, 2017)
 
