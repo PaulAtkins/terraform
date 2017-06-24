@@ -47,8 +47,8 @@ func TestStateRm(t *testing.T) {
 	ui := new(cli.MockUi)
 	c := &StateRmCommand{
 		Meta: Meta{
-			ContextOpts: testCtxConfig(p),
-			Ui:          ui,
+			testingOverrides: metaOverridesForProvider(p),
+			Ui:               ui,
 		},
 	}
 
@@ -113,8 +113,8 @@ func TestStateRm_backupExplicit(t *testing.T) {
 	ui := new(cli.MockUi)
 	c := &StateRmCommand{
 		Meta: Meta{
-			ContextOpts: testCtxConfig(p),
-			Ui:          ui,
+			testingOverrides: metaOverridesForProvider(p),
+			Ui:               ui,
 		},
 	}
 
@@ -130,12 +130,7 @@ func TestStateRm_backupExplicit(t *testing.T) {
 	// Test it is correct
 	testStateOutput(t, statePath, testStateRmOutput)
 
-	// Test we have backups
-	backups := testStateBackups(t, filepath.Dir(statePath))
-	if len(backups) != 1 {
-		t.Fatalf("bad: %#v", backups)
-	}
-	testStateOutput(t, backups[0], testStateRmOutputOriginal)
+	// Test backup
 	testStateOutput(t, backupPath, testStateRmOutputOriginal)
 }
 
@@ -147,8 +142,8 @@ func TestStateRm_noState(t *testing.T) {
 	ui := new(cli.MockUi)
 	c := &StateRmCommand{
 		Meta: Meta{
-			ContextOpts: testCtxConfig(p),
-			Ui:          ui,
+			testingOverrides: metaOverridesForProvider(p),
+			Ui:               ui,
 		},
 	}
 
